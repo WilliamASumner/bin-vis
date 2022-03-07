@@ -23,6 +23,6 @@ This project somes with a commandline tool/library `vis.py`. To do simple 2D vis
 ### 3D
 To visualize a binary in 3D, `jupyter` is required. Start up a jupyter notebook with `jupyter notebook` and open the `volume-render.ipynb` file.
 <p align="center">
-  <img width=640 height=573 alt="Placeholder for 3d img" src="https://github.com/WilliamASumner/bin-vis/blob/main/rsrc/output.gif" />
+  <img width=320 height=287 alt="Placeholder for 3d img" src="https://github.com/WilliamASumner/bin-vis/blob/main/rsrc/output.gif" />
 </p>
 
