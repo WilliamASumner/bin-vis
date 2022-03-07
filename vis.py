@@ -40,6 +40,7 @@ def beautifyPlot(file):
     fig = ax.get_figure()
     fig.tight_layout()
     fig.subplots_adjust(top=0.95)
+    fig.subplots_adjust(bottom=0.05)
     ax.set_title(f"{os.path.basename(file)}")
     ax.set_xlabel("")
     ax.set_ylabel("")
