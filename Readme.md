@@ -15,7 +15,7 @@ This project is heavily inspired by [CantorDust](https://github.com/Battelle/can
 ### 2D
 This project somes with a commandline tool/library `vis.py`. To do simple 2D visualization using matplotlib, try `./vis.py [File to visualize]`. It supports multiple backends including plain `numpy` as well as `vaex`, which is overkill but I thought it was an interesting library to try out. For more information on running the CLI tool, simply run `./vis.py -h`. 
 <p align="center">
-  <img width=300 height=300 alt="Placeholder for 2d img" src="" />
+  <img width=300 height=300 alt="Placeholder for 2d img" src="https://github.com/WilliamASumner/bin-vis/blob/main/rsrc/usr_bin_java.png?raw=true" />
 </p>
 
 
@@ -23,6 +23,6 @@ This project somes with a commandline tool/library `vis.py`. To do simple 2D vis
 ### 3D
 To visualize a binary in 3D, `jupyter` is required. Start up a jupyter notebook with `jupyter notebook` and open the `volume-render.ipynb` file.
 <p align="center">
-  <img width=300 height=300 alt="Placeholder for 3d img" src="" />
+  <img width=300 height=300 alt="Placeholder for 3d img" src="https://github.com/WilliamASumner/bin-vis/blob/main/rsrc/output.gif" />
 </p>
 
