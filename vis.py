@@ -4,7 +4,7 @@ import ipyvolume as ipv
 import matplotlib.pyplot as plt
 from matplotlib.colors import LogNorm
 import numpy as np
-import argparse, sys
+import argparse, sys, os
 
 def getFileData(file):
     with open(file,"rb") as binFile:
@@ -14,7 +14,6 @@ def getFileData(file):
 def genCoords(data, dims = 2):
     data = np.asarray(data,dtype=np.ubyte)
     return np.lib.stride_tricks.sliding_window_view(data,dims,axis=0)
-
 
 def genNdGrid(coords, dims = 2):
     grid = np.zeros((256,) * dims)
@@ -26,16 +25,21 @@ def mplPlot(data):
     plt.imshow(data, interpolation = 'none',cmap='hot',norm = LogNorm(), origin = "lower")
     ax = plt.gca()
     ax.set_facecolor("black")
-    plt.show()
 
 def vaexPlot(data, dims = 2):
     df = vaex.from_arrays(d=data)
     if dims == 2:
-        df.viz.heatmap(df.d[:,0],df.d[:,1], limits="99.7%", what = [np.log(vaex.stat.count()+1)])
-        plt.show()
+        df.viz.heatmap(df.d[:,0],df.d[:,1], limits="99%", what = [np.log(vaex.stat.count()+1)])
     elif dims == 3:
-        df.plot_widget(df.d[:,0], df.d[:,1], df.d[:,2], what = [np.log(vaex.stat.count()+1)] )
+        raise NotImplementedError("No 3D support from vaex yet")
+        #df.plot_widget(df.d[:,0], df.d[:,1], df.d[:,2], what = [np.log(vaex.stat.count()+1)] )
         #ipv.quickscatter(df.d[:,0],df.d[:,1],df.d[:,2], size = 1, marker = "sphere")
+
+def beautifyPlot(file):
+    ax = plt.gca()
+    ax.set_title(f"{os.path.basename(file)}")
+    ax.set_xlabel("")
+    ax.set_ylabel("")
 
 def parseArgs(argList):
     args = argparse.ArgumentParser(description="Binary visualizer")
@@ -56,6 +60,8 @@ def main(**args):
             mplPlot(grid)
         else:
             vaexPlot(coords, dims)
+        beautifyPlot(file)
+        plt.show()
 
 if __name__ == '__main__':
     args = parseArgs(sys.argv[1::])
