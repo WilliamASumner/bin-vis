@@ -17,7 +17,7 @@ def genCoords(data, dims = 2):
     return np.lib.stride_tricks.sliding_window_view(data,dims,axis=0)
 
 def genNdGrid(coords, dims = 2):
-    grid = np.zeros((256,) * dims,dtype=np.ubyte)
+    grid = np.zeros((256,) * dims,dtype=np.uint64)
     for coord in coords:
         grid[tuple(coord)] += 1
     return grid
@@ -34,7 +34,10 @@ def vaexPlot(data, dims = 2, isOutputFile = True):
     df = vaex.from_arrays(d=data)
     lim = "100%" if isOutputFile else "99%"
     if dims == 2:
-        hm = df.viz.heatmap(df.d[:,0],df.d[:,1], limits=lim, what = [np.log(vaex.stat.count()+1)], colorbar = isOutputFile)
+        hm = df.viz.heatmap(df.d[:,0],df.d[:,1],
+                            limits=lim,
+                            what = [np.log(vaex.stat.count()+1)],
+                            colorbar = isOutputFile)
     elif dims == 3:
         raise NotImplementedError("No 3D support from vaex yet")
         #df.plot_widget(df.d[:,0], df.d[:,1], df.d[:,2], what = [np.log(vaex.stat.count()+1)] )
